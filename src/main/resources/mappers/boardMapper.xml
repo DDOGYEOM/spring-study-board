@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.mappers.boardMapper">
+	<select id="boardCount" resultType="Integer">
+		SELECT count(*) FROM test_board;
+	</select>
+	
+	<select id="boardAll" parameterType="Integer" resultType="com.mytest.vo.BoardVO">
+		SELECT * FROM test_board ORDER BY post_date DESC LIMIT #{page}, 10;
+	</select>
+	
+	<select id="boardDetail" parameterType="Integer" resultType="com.mytest.vo.BoardVO">
+		SELECT * FROM test_board WHERE id = #{boardId} ;
+	</select>
+	
+	<insert id="boardWrite" parameterType="Map">
+		INSERT INTO test_board(title, content, writer, writer_id, post_date) VALUES ('${writeInfo.title}', '${writeInfo.content}', '${userName}', '${userId}', NOW()) 
+	</insert>
+	
+	<update id="boardModify" parameterType="Map">
+		UPDATE test_board SET title = '${title}', content = '${content}', writer='${writer}' WHERE id = ${boardId}
+	</update>
+	
+	<delete id="boardDelete"  parameterType="Integer">
+		DELETE FROM test_board WHERE id = ${boardId}
+	</delete>
+	
+
+</mapper>

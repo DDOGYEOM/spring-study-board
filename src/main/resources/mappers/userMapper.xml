@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.mappers.testMapper">
+	<select id="userCount" resultType="Integer">
+		SELECT count(*) FROM test_user;
+	</select>
+	
+	<select id="userLogin" parameterType="String" resultType="com.mytest.vo.UserVO">
+		SELECT * FROM test_user WHERE user_id='${userId}';
+	</select>
+	
+	<insert id="userRegist" parameterType="com.mytest.vo.UserVO">
+		INSERT INTO test_user(user_id, password, name, age, phone, email, address) VALUES (
+			'${userId}', 
+			'${password}',
+			'${name}',
+			'${age}',
+			'${phone}',
+			'${email}',
+			'${address}'
+			)
+	</insert>
+
+</mapper>
