@@ -26,7 +26,7 @@
 					<a class="btn btn-warning" href='javascript: window.history.back();'>뒤로가기</a>
 					<div class="d-flex">
 						<a id="btn-modify" class="me-1 btn btn-success" href='/board/write?id=${boardDetail.id}'>수정</a> 
-						<a id="btn-remove" class="ms-1 btn btn-danger" href='/board/delete?id=${boardDetail.id}'>삭제</a>
+						<a id="btn-remove" class="ms-1 btn btn-danger" onclick="boardDelete(${boardDetail.id})" >삭제</a>
 					</div>
 				</div>
 			</div>	
@@ -44,4 +44,18 @@
 			$("#btn-remove").addClass('display-none');
 		}
 	})
+	
+	function boardDelete(boardId) {
+		console.log(boardId);
+		if(confirm("이 글을 삭제하시겠습니까?")) {
+			fetch("/board/delete?id="+boardId, {
+				 method: "DELETE",
+			}).then((res) => {
+				location.href="/board";
+			})
+		}else {
+			return;
+		}
+		
+	}
 </script>

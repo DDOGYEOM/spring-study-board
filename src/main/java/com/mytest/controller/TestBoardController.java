@@ -78,10 +78,10 @@ public class TestBoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String boardWrite(@RequestParam Map<String, Object> params, HttpServletRequest request) {
 		Gson gson = new Gson();
-		System.out.println(request.getSession().getAttribute("loginUserInfo"));
 		
 		UserVO test = (UserVO)request.getSession().getAttribute("loginUserInfo");
 		boardService.writeBoard(params, test.getName(), test.getUserId());
+		System.out.println(test.getName());
 		return gson.toJson(params);
 	}
 
@@ -93,9 +93,8 @@ public class TestBoardController {
 		return gson.toJson(params);
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String boardDelete(HttpServletRequest request) {
-		boardService.delteBoard(Integer.parseInt(request.getParameter("id")));
-		return "redirect:/board";
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public void boardDelete(HttpServletRequest request) {
+		boardService.delteBoard( Integer.parseInt(request.getParameter("id")));
 	}
 }

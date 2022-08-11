@@ -7,7 +7,7 @@
 	<h1 class="mb-2 ms-1">게시판 목록</h1>
 	<a href="/board/write" id="btn-write"
 		class="btn btn-primary float-end mb-3 me-1">작성</a>
-	<table class="table table-hover text-center table-bordered">
+	<table id="board-table" class="table table-hover text-center table-bordered">
 		<thead class="table-success">
 			<tr>
 				<th>No</th>

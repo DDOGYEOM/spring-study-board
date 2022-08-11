@@ -19,7 +19,7 @@
 	</insert>
 	
 	<update id="boardModify" parameterType="Map">
-		UPDATE test_board SET title = '${title}', content = '${content}', writer='${writer}' WHERE id = ${boardId}
+		UPDATE test_board SET title = '${title}', content = '${content}' WHERE id = ${boardId}
 	</update>
 	
 	<delete id="boardDelete"  parameterType="Integer">
